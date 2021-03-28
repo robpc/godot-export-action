@@ -1,0 +1,39 @@
+# action.yml
+name: 'Godot Export'
+description: 'Export from the Godot Engine'
+branding:
+  icon: 'package'
+  color: 'blue'
+inputs:
+  version:
+    description: 'Godot version'
+    required: false
+    default: '3.2.3'
+  template:
+    description: 'Godot templates needed'
+    required: false
+    default: 'all'
+
+  project_path:  # id of input
+    description: 'Project root directory relative to repo root'
+    required: false
+  export:
+    description: 'name of the export'
+    required: true
+  directory:
+    description: 'output directory to export'
+    required: true
+  filename:
+    description: 'output filename to export'
+    required: false
+runs:
+  using: docker
+  image: Dockerfile
+  env:
+    GODOT_VERSION: ${{ inputs.version }}
+    EXPORT_TEMPLATES: ${{ inputs.template }}
+  args:
+   - ${{ inputs.project_path }}
+   - ${{ inputs.export }}
+   - ${{ inputs.directory }}
+   - ${{ inputs.filename }}
