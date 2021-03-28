@@ -6,21 +6,37 @@ on:
       - main
 
 jobs:
-  maze-test-game:
+  export:
     runs-on: ubuntu-latest
-    name: Export of Maze Test Game
+    name: Export
     steps:
       - name: Checkout test project
         uses: actions/checkout@v2
         with:
           repository: robpc/maze-test-game
-          path: project/
       - name: Export HTML
         uses: robpc/godot-export-action@main
         with:
-          project_path: project/
           export: html
-          directory: build/
+          directory: build
           filename: index.html
       - name: Test for the output file
-        run: stat project/build/index.html
+        run: stat ./build/index.html
+  export-with-project-directory:
+    runs-on: ubuntu-latest
+    name: Export with project_directory
+    steps:
+      - name: Checkout test project
+        uses: actions/checkout@v2
+        with:
+          repository: robpc/maze-test-game
+          path: project
+      - name: Export HTML
+        uses: robpc/godot-export-action@main
+        with:
+          project_directory: project
+          export: html
+          directory: build
+          filename: index.html
+      - name: Test for the output file
+        run: stat ./project/build/index.html

@@ -1,16 +1,30 @@
 #!/bin/bash
 
-project_path=$1
-export_name=$2
-directory=$3
-filname=$4
+export_name=$1
+directory=$2
+filename=$3
+project_directory=$4
+projectfile_directory=$5
 
-echo "mkdir -p ${project_path}/${directory}"
-mkdir -p ${project_path}/${directory}
+if [ "${project_directory}" != "" ]; then
+  project_full_path="${GITHUB_WORKSPACE%%/}${GITHUB_WORKSPACE:+/}${project_directory}"
 
-output_path=${directory%%/}${directory:+/}$filname
+  echo
+  echo "-- Switching to project directory ${project_full_path}"
+  cd ${project_full_path}
+fi
 
-ls -la ${project_path}
+echo
+echo "-- Making sure export directory exists ${directory}"
+mkdir -p ${directory}
 
-echo "godot --path ${project_path} --export ${export_name} ${output_path}"
-godot --path ${project_path} --export ${export_name} ${output_path}
+path_arg=""
+if [ "${projectfile_directory}" != "" ]; then
+  path_arg="--path ${projectfile_directory}"
+fi
+
+output_path=${directory%%/}${directory:+/}$filename
+echo
+echo "-- Exporting ${export_name} to ${output_path}"
+echo "godot ${path_arg} --export ${export_name} ${output_path}"
+godot ${path_arg} --export ${export_name} ${output_path}

@@ -5,9 +5,6 @@ branding:
   icon: 'package'
   color: 'blue'
 inputs:
-  project_path:  # id of input
-    description: 'Project root directory relative to repo root'
-    required: false
   export:
     description: 'name of the export'
     required: true
@@ -16,12 +13,20 @@ inputs:
     required: true
   filename:
     description: 'output filename to export'
+    required: true
+
+  project_directory:
+    description: 'Directory of the project if not the root'
+    required: false
+  projectfile_directory:
+    description: 'Directory containing the project.godot file if not the project_dir'
     required: false
 runs:
   using: docker
   image: Dockerfile
   args:
-   - ${{ inputs.project_path }}
    - ${{ inputs.export }}
    - ${{ inputs.directory }}
    - ${{ inputs.filename }}
+   - ${{ inputs.project_directory }}
+   - ${{ inputs.projectfile_directory }}
