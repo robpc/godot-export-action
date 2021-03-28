@@ -1,0 +1,29 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  maze-test-game:
+    runs-on: ubuntu-latest
+    name: Export of Maze Test Game
+    steps:
+    - name: Checkout test project
+      uses: actions/checkout@v2
+      with:
+        repository: my-org/my-tools
+        path: project/
+    - name: Export HTML
+      id: hello
+      uses: robpc/godot-export-action@main
+      with:
+        version: 3.2.3
+        project_path: project/
+        export: html
+        directory: build/
+        filename: index.html
+    # Use the output from the `hello` step
+    - name: Test for the output file
+      run: stat project/build/index.html

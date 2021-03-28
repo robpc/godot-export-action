@@ -5,7 +5,7 @@ export_name=$2
 directory=$3
 filname=$4
 
-mkdir -p ${directory}
+mkdir -p ${project_path}/${directory}
 
 output_path=${directory%%/}${directory:+/}$filname
 
