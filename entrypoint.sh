@@ -12,5 +12,5 @@ output_path=${directory%%/}${directory:+/}$filname
 
 ls -la ${project_path}
 
-echo "godot --path /workspace/${project_path} --export ${export_name} ${output_path}"
-godot --path /workspace/${project_path} --export ${export_name} ${output_path}
+echo "godot --path ${project_path} --export ${export_name} ${output_path}"
+godot --path ${project_path} --export ${export_name} ${output_path}
