@@ -5,15 +5,6 @@ branding:
   icon: 'package'
   color: 'blue'
 inputs:
-  version:
-    description: 'Godot version'
-    required: false
-    default: '3.2.3'
-  template:
-    description: 'Godot templates needed'
-    required: false
-    default: 'all'
-
   project_path:  # id of input
     description: 'Project root directory relative to repo root'
     required: false
@@ -29,9 +20,6 @@ inputs:
 runs:
   using: docker
   image: Dockerfile
-  env:
-    GODOT_VERSION: ${{ inputs.version }}
-    EXPORT_TEMPLATES: ${{ inputs.template }}
   args:
    - ${{ inputs.project_path }}
    - ${{ inputs.export }}

@@ -19,7 +19,6 @@ jobs:
       id: hello
       uses: robpc/godot-export-action@main
       with:
-        version: 3.2.3
         project_path: project/
         export: html
         directory: build/
