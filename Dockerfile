@@ -4,5 +4,6 @@ ARG EXPORT_TEMPLATE="all"
 FROM robpc/godot-headless:${GODOT_VERSION}-${EXPORT_TEMPLATE}
 
 COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
