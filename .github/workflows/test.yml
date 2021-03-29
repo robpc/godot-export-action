@@ -15,7 +15,7 @@ jobs:
         with:
           repository: robpc/maze-test-game
       - name: Export HTML
-        uses: robpc/godot-export-action@main
+        uses: robpc/godot-export-action@v3.2.3
         with:
           export: html
           directory: build
@@ -31,7 +31,7 @@ jobs:
         with:
           repository: robpc/maze-test-game
       - name: Export HTML
-        uses: robpc/godot-export-action@main
+        uses: robpc/godot-export-action@v3.2.3
         with:
           export: html
           directory: build
@@ -48,7 +48,7 @@ jobs:
           repository: robpc/maze-test-game
           path: project
       - name: Export HTML
-        uses: robpc/godot-export-action@main
+        uses: robpc/godot-export-action@v3.2.3
         with:
           project_directory: project
           export: html
