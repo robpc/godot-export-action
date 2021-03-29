@@ -23,7 +23,7 @@ inputs:
     required: false
 runs:
   using: docker
-  image: Dockerfile
+  image: docker://robpc/godot-export-action:3.2.3
   args:
    - ${{ inputs.export }}
    - ${{ inputs.directory }}

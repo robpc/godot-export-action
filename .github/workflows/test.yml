@@ -22,6 +22,22 @@ jobs:
           filename: index.html
       - name: Test for the output file
         run: stat ./build/index.html
+  export-without-version:
+    runs-on: ubuntu-latest
+    name: Export
+    steps:
+      - name: Checkout test project
+        uses: actions/checkout@v2
+        with:
+          repository: robpc/maze-test-game
+      - name: Export HTML
+        uses: robpc/godot-export-action@main
+        with:
+          export: html
+          directory: build
+          filename: index.html
+      - name: Test for the output file
+        run: stat ./build/index.html
   export-with-project-directory:
     runs-on: ubuntu-latest
     name: Export with project_directory
