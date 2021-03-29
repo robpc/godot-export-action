@@ -1,10 +1,9 @@
 #!/bin/bash
 
-export_name=$1
-directory=$2
-filename=$3
-project_directory=$4
-projectfile_directory=$5
+preset=$1
+export_path=$2
+project_directory=$3
+projectfile_directory=$4
 
 if [ "${project_directory}" != "" ]; then
   project_full_path="${GITHUB_WORKSPACE%%/}${GITHUB_WORKSPACE:+/}${project_directory}"
@@ -14,17 +13,17 @@ if [ "${project_directory}" != "" ]; then
   cd ${project_full_path}
 fi
 
+export_directory=$(dirname ${export_path})
 echo
-echo "-- Making sure export directory exists ${directory}"
-mkdir -p ${directory}
+echo "-- Making sure export directory exists ${export_directory}"
+mkdir -p ${export_directory}
 
 path_arg=""
 if [ "${projectfile_directory}" != "" ]; then
   path_arg="--path ${projectfile_directory}"
 fi
 
-output_path=${directory%%/}${directory:+/}$filename
 echo
-echo "-- Exporting ${export_name} to ${output_path}"
-echo "godot ${path_arg} --export ${export_name} ${output_path}"
-godot ${path_arg} --export ${export_name} ${output_path}
+echo "-- Exporting ${export_name} to ${export_path}"
+echo "godot ${path_arg} --export ${preset} ${export_path}"
+godot ${path_arg} --export ${preset} ${export_path}

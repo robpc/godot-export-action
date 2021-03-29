@@ -5,16 +5,15 @@ env:
   latest: 3.2.3
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - Dockerfile
-      - entrypoint.sh
-      - .github/workflows/dockerhub.yml
+  workflow_run:
+    workflows:
+      - Test
+    types:
+      - completed
 
 jobs:
   docker:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     strategy:
       matrix:

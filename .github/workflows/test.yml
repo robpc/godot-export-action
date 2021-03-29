@@ -4,6 +4,12 @@ on:
   push:
     branches:
       - main
+    paths:
+      - Dockerfile
+      - entrypoint.sh
+      - action.yml
+      - .github/workflows/test.yml
+      - .github/workflows/dockerhub.yml
 
 jobs:
   export:
@@ -15,27 +21,10 @@ jobs:
         with:
           repository: robpc/maze-test-game
       - name: Export HTML
-        uses: robpc/godot-export-action@v3.2.3
+        uses: robpc/godot-export-action@main
         with:
-          export: html
-          directory: build
-          filename: index.html
-      - name: Test for the output file
-        run: stat ./build/index.html
-  export-without-version:
-    runs-on: ubuntu-latest
-    name: Export
-    steps:
-      - name: Checkout test project
-        uses: actions/checkout@v2
-        with:
-          repository: robpc/maze-test-game
-      - name: Export HTML
-        uses: robpc/godot-export-action@v3.2.3
-        with:
-          export: html
-          directory: build
-          filename: index.html
+          preset: html
+          export_path: build/index.html
       - name: Test for the output file
         run: stat ./build/index.html
   export-with-project-directory:
@@ -48,11 +37,10 @@ jobs:
           repository: robpc/maze-test-game
           path: project
       - name: Export HTML
-        uses: robpc/godot-export-action@v3.2.3
+        uses: robpc/godot-export-action@main
         with:
           project_directory: project
-          export: html
-          directory: build
-          filename: index.html
+          preset: html
+          export_path: build/index.html
       - name: Test for the output file
         run: stat ./project/build/index.html

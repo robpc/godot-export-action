@@ -5,14 +5,11 @@ branding:
   icon: 'package'
   color: 'blue'
 inputs:
-  export:
-    description: 'name of the export'
+  preset:
+    description: 'name of the export preset'
     required: true
-  directory:
-    description: 'output directory to export'
-    required: true
-  filename:
-    description: 'output filename to export'
+  export_path:
+    description: 'export path for the executable'
     required: true
 
   project_directory:
@@ -23,10 +20,10 @@ inputs:
     required: false
 runs:
   using: docker
-  image: docker://robpc/godot-export-action:3.2.3
+  image: Dockerfile
+  # image: docker://robpc/godot-export-action:3.2.3
   args:
-   - ${{ inputs.export }}
-   - ${{ inputs.directory }}
-   - ${{ inputs.filename }}
+   - ${{ inputs.preset }}
+   - ${{ inputs.export_path }}
    - ${{ inputs.project_directory }}
    - ${{ inputs.projectfile_directory }}
