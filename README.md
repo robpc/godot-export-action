@@ -19,6 +19,10 @@ older versions.
 
 ### Simple Example
 
+See working example from [maze-test-game](https://github.com/robpc/maze-test-game)
+* [beta.yml](https://github.com/robpc/maze-test-game/blob/main/.github/workflows/beta.yml)
+* [Maze Test Deployed](https://robpc.github.io/maze-test-game/)
+
 ```yaml
 name: Deploy Beta
 
@@ -52,6 +56,10 @@ jobs:
 ```
 
 ### Multi-platform example
+
+See working example from [maze-test-game](https://github.com/robpc/maze-test-game)
+* [release.yml](https://github.com/robpc/maze-test-game/blob/main/.github/workflows/release.yml)
+* [Maze Test Releases](https://github.com/robpc/maze-test-game/releases)
 
 ```yaml
 name: Release
