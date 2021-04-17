@@ -1,6 +1,6 @@
 # action.yml
-name: 'Godot Build'
-description: 'Build from the Godot Engine'
+name: 'Godot Headless Build'
+description: 'Quickly build from the headless version of the Godot Engine for multiple platforms'
 branding:
   icon: 'package'
   color: 'blue'
