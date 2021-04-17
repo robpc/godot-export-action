@@ -1,6 +1,6 @@
 # action.yml
-name: 'Godot Export'
-description: 'Export from the Godot Engine'
+name: 'Godot Build'
+description: 'Build from the Godot Engine'
 branding:
   icon: 'package'
   color: 'blue'
