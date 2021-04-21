@@ -1,6 +1,6 @@
 # action.yml
 name: 'Godot Headless Build'
-description: 'Quickly build from the headless version of the Godot Engine for multiple platforms'
+description: 'Use prebuilt docker images to quickly export projects for multiple platforms using the Godot Engine'
 branding:
   icon: 'package'
   color: 'blue'
