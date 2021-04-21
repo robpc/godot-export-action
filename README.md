@@ -44,7 +44,7 @@ jobs:
         with:
           lfs: true
       - name: Export html from Godot
-        uses: robpc/godot-export-action@v3.2.3
+        uses: robpc/godot-export-action@v3.3
         with:
           preset: html
           export_path: build/html/index.html
@@ -93,7 +93,7 @@ jobs:
         with:
           lfs: true
       - name: Export ${{ matrix.preset }} from Godot
-        uses: robpc/godot-export-action@v3.2.3
+        uses: robpc/godot-export-action@v3.3
         with:
           preset: ${{ matrix.preset }}
           export_path: build/${{ matrix.preset }}/${{ matrix.export_file }}
