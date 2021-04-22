@@ -86,7 +86,7 @@ jobs:
           - preset: linux
             export_file: maze-test
           - preset: osx
-            export_file: maze-test
+            export_file: maze-test.zip
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
@@ -104,9 +104,17 @@ jobs:
         run: |
           version=${GITHUB_REF/refs\/tags\//}
           echo "package=${FILENAME}-${version}-${PRESET}.zip" >> $GITHUB_ENV
-      - uses: montudor/action-zip@v0.1.1
+      - name: Bundle ${{ matrix.preset }} export
+        uses: montudor/action-zip@v0.1.1
+        if: ${{ matrix.preset != 'osx' }}
         with:
           args: zip --junk-paths --recurse-paths build/${{ env.package }} build/${{ matrix.preset }}
+      - name: Copy ${{ matrix.preset }} bundle
+        if: ${{ matrix.preset == 'osx' }}
+        uses: canastro/copy-file-action@0.0.2
+        with:
+          source: build/${{ matrix.preset }}/${{ matrix.export_file }}
+          target: build/${{ env.package }}
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
         with:
