@@ -2,7 +2,7 @@
 
 Action to export fron [Godot Engine](https://godotengine.org/) using the headless version
 of the engine. Under the hood, this action uses prebuilt docker images with the export
-templates pre-installed to minimize runtime. Currently built with versions for `v3.3` and
+templates pre-installed to minimize runtime. Currently built with versions for `v3.3.1`, `v3.3` and
 `v3.2.3`, but future stable are planned to be added as they become available. Feel free to
 open a request for older versions.
 
@@ -44,7 +44,7 @@ jobs:
         with:
           lfs: true
       - name: Export html from Godot
-        uses: robpc/godot-export-action@v3.3
+        uses: robpc/godot-export-action@v3.3.1
         with:
           preset: html
           export_path: build/html/index.html
