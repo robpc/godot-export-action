@@ -20,8 +20,7 @@ inputs:
     required: false
 runs:
   using: docker
-  image: Dockerfile
-  # image: docker://robpc/godot-export-action:3.2.3
+  image: docker://robpc/godot-export-action:3.3.3
   args:
    - ${{ inputs.preset }}
    - ${{ inputs.export_path }}
