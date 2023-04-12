@@ -23,7 +23,7 @@ jobs:
       - name: Export HTML
         uses: robpc/godot-export-action@main
         with:
-          preset: html
+          preset: web
           export_path: build/index.html
       - name: Test for the output file
         run: stat ./build/index.html
@@ -40,7 +40,7 @@ jobs:
         uses: robpc/godot-export-action@main
         with:
           project_directory: project
-          preset: html
+          preset: web
           export_path: build/index.html
       - name: Test for the output file
         run: stat ./project/build/index.html
