@@ -27,7 +27,7 @@ jobs:
           - windows
           - desktop
           - android
-          - iso
+          - ios
           - mobile
           - web
           - all
