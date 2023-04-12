@@ -26,4 +26,4 @@ fi
 echo
 echo "-- Exporting ${export_name} to ${export_path}"
 echo "godot ${path_arg} --export-release ${preset} ${export_path}"
-godot ${path_arg} --export ${preset} ${export_path}
+godot ${path_arg} --export-release ${preset} ${export_path}
