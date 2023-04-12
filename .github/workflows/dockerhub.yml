@@ -2,7 +2,7 @@ name: Dockerhub
 
 env:
   docker_repo: robpc/godot-export-action
-  latest: 3.5.2
+  latest: '4.0'
 
 on:
   workflow_run:
@@ -18,22 +18,18 @@ jobs:
     strategy:
       matrix:
         version:
-          - 3.5.2
+          - '4.0'
         exports:
           - linux
-          - osx
+          - macos
           - win32
           - win64
-          - win
-          - uwp32
-          - uwp64
-          - uwp
           - windows
           - desktop
           - android
-          - iphone
+          - iso
           - mobile
-          - html
+          - web
           - all
     steps:
       - name: Checkout
