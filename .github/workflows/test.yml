@@ -17,7 +17,7 @@ jobs:
     name: Export
     steps:
       - name: Checkout test project
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: robpc/maze-test-game
       - name: Export HTML
@@ -32,7 +32,7 @@ jobs:
     name: Export with project_directory
     steps:
       - name: Checkout test project
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: robpc/maze-test-game
           path: project
