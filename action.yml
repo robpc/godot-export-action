@@ -21,7 +21,7 @@ inputs:
 runs:
   using: docker
   image: Dockerfile
-  # image: docker://robpc/godot-export-action:4.1.1
+  # image: docker://robpc/godot-export-action:4.1.2
   args:
    - ${{ inputs.preset }}
    - ${{ inputs.export_path }}
