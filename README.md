@@ -5,7 +5,7 @@ of the engine. Under the hood, this action uses prebuilt docker images with the 
 templates pre-installed to minimize runtime.
 
 Supported versions:
-`v4.0.2`, `v4.0.1`, `v4.0`, `v3.5.2`, `v3.5.1`, `v3.5`, `v3.4.5`, `v3.4.4`, `v3.4.3`, `v3.4.2`, `v3.4.1`, `v3.4`, `v3.3.4`, `v3.3.3`, `v3.3.2`, `v3.3.1`, `v3.3` and `v3.2.3`
+`v4.0.3`, `v4.0.2`, `v4.0.1`, `v4.0`, `v3.5.2`, `v3.5.1`, `v3.5`, `v3.4.5`, `v3.4.4`, `v3.4.3`, `v3.4.2`, `v3.4.1`, `v3.4`, `v3.3.4`, `v3.3.3`, `v3.3.2`, `v3.3.1`, `v3.3` and `v3.2.3`
 
 Future stable are planned to be added as they become available. Feel free to open a request for older versions.
 
@@ -47,7 +47,7 @@ jobs:
         with:
           lfs: true
       - name: Export html from Godot
-        uses: robpc/godot-export-action@v4.0.2
+        uses: robpc/godot-export-action@v4.0.3
         with:
           preset: html
           export_path: build/html/index.html
@@ -85,7 +85,7 @@ jobs:
           lfs: true
       - run: echo "version=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
       - name: Export ${{ matrix.preset }} from Godot
-        uses: robpc/godot-export-action@v4.0.2
+        uses: robpc/godot-export-action@v4.0.3
         with:
           preset: ${{ matrix.preset }}
           export_path: build/${{ matrix.preset }}/${{ matrix.export_file }}

@@ -2,7 +2,7 @@ name: Dockerhub
 
 env:
   docker_repo: robpc/godot-export-action
-  latest: '4.0.2'
+  latest: '4.0.3'
 
 on:
   workflow_run:
@@ -18,7 +18,7 @@ jobs:
     strategy:
       matrix:
         version:
-          - '4.0.2'
+          - '4.0.3'
         exports:
           - linux
           - macos
