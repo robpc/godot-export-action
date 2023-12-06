@@ -37,6 +37,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: robpc/maze-test-game
+          ref: de79197258ede94599344579d06381a547466647 # pre-4.0
           path: project
       - name: Export HTML
         uses: robpc/godot-export-action@legacy
