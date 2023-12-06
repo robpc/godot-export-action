@@ -23,7 +23,7 @@ jobs:
           repository: robpc/maze-test-game
           ref: de79197258ede94599344579d06381a547466647 # pre-4.0
       - name: Export HTML
-        uses: ./
+        uses: robpc/godot-export-action@legacy
         with:
           preset: html
           export_path: build/index.html
@@ -39,7 +39,7 @@ jobs:
           repository: robpc/maze-test-game
           path: project
       - name: Export HTML
-        uses: robpc/godot-export-action@main
+        uses: robpc/godot-export-action@legacy
         with:
           project_directory: project
           preset: html
