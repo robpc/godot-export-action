@@ -1,13 +1,15 @@
 name: Test
 
 on:
-  push:
-    branches:
-      - main
+  pull_request:
     paths:
       - Dockerfile
       - entrypoint.sh
       - action.yml
+      - godot3/versions.yml
+      - godot4/versions.yml
+      - scripts/plan-builds.py
+      - scripts/sync-readme.py
       - .github/workflows/test.yml
       - .github/workflows/dockerhub.yml
 
@@ -16,12 +18,16 @@ jobs:
     runs-on: ubuntu-latest
     name: Export
     steps:
+      - name: Checkout action repo
+        uses: actions/checkout@v4
+        with:
+          path: action
       - name: Checkout test project
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: robpc/maze-test-game
       - name: Export HTML
-        uses: robpc/godot-export-action@main
+        uses: ./action
         with:
           preset: web
           export_path: build/index.html
@@ -31,13 +37,17 @@ jobs:
     runs-on: ubuntu-latest
     name: Export with project_directory
     steps:
+      - name: Checkout action repo
+        uses: actions/checkout@v4
+        with:
+          path: action
       - name: Checkout test project
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: robpc/maze-test-game
           path: project
       - name: Export HTML
-        uses: robpc/godot-export-action@main
+        uses: ./action
         with:
           project_directory: project
           preset: web
