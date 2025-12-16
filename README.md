@@ -5,7 +5,9 @@ of the engine. Under the hood, this action uses prebuilt docker images with the 
 templates pre-installed to minimize runtime.
 
 Supported versions:
-`v4.3`, `v4.2.2`, `v4.2.1`, `v4.2`, `v4.1.3`, `v4.1.2`, `v4.1.1`, `v4.1`, `v4.0.4`, `v4.0.3`, `v4.0.2`, `v4.0.1`, `v4.0`, `v3.5.2`, `v3.5.1`, `v3.5`, `v3.4.5`, `v3.4.4`, `v3.4.3`, `v3.4.2`, `v3.4.1`, `v3.4`, `v3.3.4`, `v3.3.3`, `v3.3.2`, `v3.3.1`, `v3.3` and `v3.2.3`
+<!-- supported-versions:start -->
+`v4.3`, `v4.2.2`, `v4.2.1`, `v4.2`, `v4.1.3`, `v4.1.2`, `v4.1.1`, `v4.1`, `v4.0.4`, `v4.0.3`, `v4.0.2`, `v4.0.1`, `v4.0`, `v3.5.3`, `v3.5.2`, `v3.5.1`, `v3.5`, `v3.4.5`, `v3.4.4`, `v3.4.3`, `v3.4.2`, `v3.4.1`, `v3.4`, `v3.3.4`, `v3.3.3`, `v3.3.2`, `v3.3.1`, `v3.3` and `v3.2.3`
+<!-- supported-versions:end -->
 
 Future stable are planned to be added as they become available. Feel free to open a request for older versions.
 

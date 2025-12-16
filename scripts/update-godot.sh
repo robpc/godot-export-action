@@ -15,12 +15,19 @@ if [ -z "${VERSION}" ]; then
 fi
 
 # Files to change
-DOCKERHUB_FILE=.github/workflows/dockerhub.yml
 DOCKER_FILE=Dockerfile
 README_FILE=README.md
 ACTION_FILE=action.yml
+VERSIONS_FILE=""
 
-if [ ! -f "${DOCKERHUB_FILE}" -o ! -f "${DOCKER_FILE}" -o ! -f "${README_FILE}" -o ! -f "${ACTION_FILE}" ]; then
+MAJOR_VERSION="${VERSION%%.*}"
+if [ "${MAJOR_VERSION}" = "3" ]; then
+    VERSIONS_FILE="godot3/versions.yml"
+else
+    VERSIONS_FILE="godot4/versions.yml"
+fi
+
+if [ ! -f "${DOCKER_FILE}" -o ! -f "${README_FILE}" -o ! -f "${ACTION_FILE}" -o ! -f "${VERSIONS_FILE}" ]; then
     echo "ERROR: Could not find files, perhaps in the wrong directory?"
     exit 1
 fi
@@ -28,13 +35,21 @@ fi
 VERSION_PATTERN='[0-9]+\.[0-9]+(\.[0-9]+)?'
 
 # =====================
-# Github Action
+# Versions file
 # =====================
 
-# Update `env.latest`
-sed --in-place --regexp-extended '/latest:/'"s/${VERSION_PATTERN}/${VERSION}/" "${DOCKERHUB_FILE}"
-# Update `jobs.docker.strategy.matrix.version`
-sed --in-place --regexp-extended '/version:/ { n; s/'"${VERSION_PATTERN}"'/'"${VERSION}"'/ }' "${DOCKERHUB_FILE}"
+# Update `latest:`
+sed --in-place --regexp-extended '/^latest:/'"s/${VERSION_PATTERN}/${VERSION}/" "${VERSIONS_FILE}"
+
+# Ensure `versions:` contains the new version (prepend if missing)
+if ! grep -qE "^[[:space:]]*-[[:space:]]*['\\\"]?${VERSION}['\\\"]?[[:space:]]*$" "${VERSIONS_FILE}"; then
+    tmp_file="$(mktemp)"
+    awk -v v="${VERSION}" '
+        $0 ~ /^versions:/ { print; print "  - \x27" v "\x27"; next }
+        { print }
+    ' "${VERSIONS_FILE}" > "${tmp_file}"
+    mv "${tmp_file}" "${VERSIONS_FILE}"
+fi
 
 # =====================
 # Dockerfile

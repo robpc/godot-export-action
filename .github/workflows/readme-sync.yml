@@ -1,0 +1,37 @@
+name: Sync README versions
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - godot3/versions.yml
+      - godot4/versions.yml
+      - scripts/sync-readme.py
+      - README.md
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Regenerate README
+        run: |
+          set -euo pipefail
+          python3 scripts/sync-readme.py
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          branch: chore/readme-versions-sync
+          commit-message: Sync README supported versions
+          title: Sync README supported versions with versions files
+          body: |
+            README supported versions regenerated from `godot3/versions.yml` and `godot4/versions.yml`.

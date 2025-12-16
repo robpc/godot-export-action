@@ -1,0 +1,52 @@
+name: Marketplace Tag
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Godot version branch to tag (e.g. 4.3)
+        required: true
+      tag:
+        description: Optional explicit tag (e.g. v4.3-2). If empty, next v<version>-N is used.
+        required: false
+
+permissions:
+  contents: write
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: v${{ inputs.version }}
+          fetch-depth: 0
+      - name: Create tag
+        env:
+          INPUT_VERSION: ${{ inputs.version }}
+          INPUT_TAG: ${{ inputs.tag }}
+        run: |
+          set -euo pipefail
+
+          version="${INPUT_VERSION}"
+          if [ -z "${INPUT_TAG:-}" ]; then
+            base="v${version}"
+            last="$(git tag -l "${base}-*" | sed -E "s/^${base}-//" | grep -E '^[0-9]+$' | sort -n | tail -n 1 || true)"
+            if [ -z "${last:-}" ]; then
+              next="0"
+            else
+              next="$((last + 1))"
+            fi
+            tag="${base}-${next}"
+          else
+            tag="${INPUT_TAG}"
+          fi
+
+          if git rev-parse -q --verify "refs/tags/${tag}" >/dev/null; then
+            echo "Tag already exists: ${tag}" >&2
+            exit 1
+          fi
+
+          git tag -a "${tag}" -m "Release ${tag}"
+          git push origin "${tag}"
